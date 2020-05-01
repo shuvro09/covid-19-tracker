@@ -1,0 +1,11 @@
+.cards{
+    margin:auto!important;
+    margin-bottom: 5%!important;
+}
+.charts{
+    max-width:90%;
+    margin:auto;
+}
+.countrySelector{
+    text-align: center
+}
