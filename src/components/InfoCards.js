@@ -11,12 +11,14 @@ const useStyles = makeStyles({
 });
 
 
-function InfoCards({ data }) {
-    // console.log(data.confirmed)
+function InfoCards({ data, searchInput }) {
     const classes = useStyles();
+    if (searchInput === "Global")
+        return null
     if (!data.confirmed)
         return "Loading..."
-
+    if (data.confirmed.value === 0)
+        return null
     return (
 
         <div className={classes.root}>
@@ -29,6 +31,7 @@ function InfoCards({ data }) {
                         <Typography>
                             {data.confirmed.value}
                         </Typography>
+
                     </CardContent>
                 </Grid>
 
@@ -40,6 +43,9 @@ function InfoCards({ data }) {
                         <Typography>
                             {data.deaths.value}
                         </Typography>
+                        <Typography>
+                            {(data.deaths.value / data.confirmed.value * 100).toFixed(2)}%
+                        </Typography>
                     </CardContent>
                 </Grid>
                 <Grid className={'cards'} xs={12} md={3} item component={Card}>
@@ -47,8 +53,11 @@ function InfoCards({ data }) {
                         <Typography color="textSecondary" gutterBottom>
                             Recovered
                         </Typography>
-                        <Typography>
+                        <Typography >
                             {data.recovered.value}
+                        </Typography>
+                        <Typography>
+                            {(data.recovered.value / data.confirmed.value * 100).toFixed(2)}%
                         </Typography>
                     </CardContent>
                 </Grid>

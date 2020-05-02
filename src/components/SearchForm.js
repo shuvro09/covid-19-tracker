@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { Input, Button } from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
 
 function SearchForm({ setSearchInput }) {
     const [text, setText] = useState("")
 
     return (
         <div >
-            <Input type="text" placeholder="search" value={text} onChange={(e) => { setText(e.target.value) }} ></Input>
-            <Button onClick={(e) => {
+            <TextField label="Search" value={text} onChange={(e) => { setText(e.target.value) }} ></TextField>
+            <Button onClick={() => {
 
-                console.log(text)
+                // console.log(text)
                 setSearchInput(text === "" ? "" : `countries/${text}`)
                 setText("")
             }}>search</Button>
