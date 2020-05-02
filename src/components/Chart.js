@@ -3,7 +3,8 @@ import { Bar } from 'react-chartjs-2';
 function Chart({ data }) {
     if (!data.confirmed)
         return ("Loading...")
-
+    if (data.confirmed.value === 0 && data.deaths.value === 0 && data.recovered.value === 0)
+        return ("Error. Data Unavailable currently")
     const chartData = {
         labels: ['Confirmed Cases', 'Deaths', 'Recoveries'],
         datasets: [
