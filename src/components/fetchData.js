@@ -15,30 +15,32 @@ const FetchCountryData = async ({ country, setStatus, status }) => {
     // eslint-disable-next-line
     if (country) {
 
-        const response = await fetch(`https://api.covid19api.com/total/country/${country.Slug}`)
-        if (response.status !== 200) {
-            setStatus({ ...status, countryData: 'error' })
-            return ([])
-        }
-        else {
+        try {
+            const response = await fetch(`https://api.covid19api.com/total/country/${country.Slug}`)
             const data = await response.json()
             setStatus({ ...status, countryData: 'ok' })
             return data.splice(data.length - 30, data.length)
+
+        }
+        catch {
+            setStatus({ ...status, countryData: 'error' })
+            return ([])
         }
     }
     return null
 }
 const FetchSummary = async ({ setStatus, status }) => {
-    // eslint-disable-next-line
-    const response = await fetch('https://api.covid19api.com/summary')
-    if (response.status !== 200) {
-        setStatus({ ...status, summaryData: 'error' })
-        return ({})
-    }
-    else {
+    try {
+        const response = await fetch('https://api.covid19api.com/summary')
         const data = await response.json()
         setStatus({ ...status, summaryData: 'ok' })
         return data
+    }
+    catch (error) {
+        console.log(error)
+        setStatus({ ...status, summaryData: 'error' })
+        return ({})
+
     }
 }
 export { FetchSummary, FetchCountryData };
