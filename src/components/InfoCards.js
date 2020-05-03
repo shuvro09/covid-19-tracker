@@ -31,6 +31,9 @@ function InfoCards({ data }) {
                         <Typography>
                             {data.TotalConfirmed}
                         </Typography>
+                        <Typography>
+                            New Cases: {data.NewConfirmed}
+                        </Typography>
 
                     </CardContent>
                 </Grid>
@@ -44,11 +47,11 @@ function InfoCards({ data }) {
                             {data.TotalDeaths}
                         </Typography>
                         <Typography>
-                            {data.TotalConfirmed === 0 ? 0 : (data.TotalDeaths / data.TotalConfirmed * 100).toFixed(2)}%
+                            New Deaths: {data.NewDeaths}
                         </Typography>
                     </CardContent>
                 </Grid>
-                <Grid className={'cards'} xs={12} md={3} item component={Card}>
+                <Grid className={'cards'} xs={12} md={4} item component={Card}>
                     <CardContent>
                         <Typography color="textSecondary" gutterBottom>
                             Recovered
@@ -56,8 +59,8 @@ function InfoCards({ data }) {
                         <Typography >
                             {data.TotalRecovered}
                         </Typography>
-                        <Typography>
-                            {data.TotalConfirmed === 0 ? 0 : (data.TotalRecovered / data.TotalConfirmed * 100).toFixed(2)}%
+                        <Typography >
+                            New Recovered: {data.NewRecovered}
                         </Typography>
                     </CardContent>
                 </Grid>
