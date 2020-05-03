@@ -11,14 +11,14 @@ const useStyles = makeStyles({
 });
 
 
-function InfoCards({ data, searchInput }) {
+function InfoCards({ data }) {
     const classes = useStyles();
-    if (searchInput === "Global")
+    // if (searchInput === "Global")
+    //     return null
+    if (!data)
         return null
-    if (!data.confirmed)
+    if (data.TotalConfirmed === undefined)
         return "Loading..."
-    if (data.confirmed.value === 0)
-        return null
     return (
 
         <div className={classes.root}>
@@ -29,7 +29,7 @@ function InfoCards({ data, searchInput }) {
                             Confirmed Cases
                         </Typography>
                         <Typography>
-                            {data.confirmed.value}
+                            {data.TotalConfirmed}
                         </Typography>
 
                     </CardContent>
@@ -41,10 +41,10 @@ function InfoCards({ data, searchInput }) {
                             Deaths
                         </Typography>
                         <Typography>
-                            {data.deaths.value}
+                            {data.TotalDeaths}
                         </Typography>
                         <Typography>
-                            {(data.deaths.value / data.confirmed.value * 100).toFixed(2)}%
+                            {data.TotalConfirmed === 0 ? 0 : (data.TotalDeaths / data.TotalConfirmed * 100).toFixed(2)}%
                         </Typography>
                     </CardContent>
                 </Grid>
@@ -54,10 +54,10 @@ function InfoCards({ data, searchInput }) {
                             Recovered
                         </Typography>
                         <Typography >
-                            {data.recovered.value}
+                            {data.TotalRecovered}
                         </Typography>
                         <Typography>
-                            {(data.recovered.value / data.confirmed.value * 100).toFixed(2)}%
+                            {data.TotalConfirmed === 0 ? 0 : (data.TotalRecovered / data.TotalConfirmed * 100).toFixed(2)}%
                         </Typography>
                     </CardContent>
                 </Grid>
