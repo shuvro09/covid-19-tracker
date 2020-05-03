@@ -9,3 +9,25 @@
 .countrySelector{
     text-align: center
 }
+.autocomplete{
+    width: 80%;
+    margin:auto
+}
+.statusError{
+    text-align: center;
+    color: crimson
+}
+@media screen and (min-width:700px)
+{
+    .autocomplete{
+        width: 65%;
+        margin:auto
+    }
+}
+@media screen and (min-width:960px)
+{
+    .autocomplete{
+        width: 50%;
+        margin:auto
+    }
+}
